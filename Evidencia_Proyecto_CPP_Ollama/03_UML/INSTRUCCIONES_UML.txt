@@ -1,0 +1,2 @@
+Abre el archivo diagrama_clases.puml en PlantUML o una extension de VS Code y exportalo como PNG.
+Guarda la imagen como diagrama_clases.png en esta misma carpeta.

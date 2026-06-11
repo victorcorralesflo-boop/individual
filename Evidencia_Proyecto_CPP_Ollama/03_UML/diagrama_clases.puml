@@ -1,0 +1,56 @@
+@startuml
+
+class Usuario {
+  - nombre: string
+  + Usuario()
+  + Usuario(nombre: string)
+  + setNombre(nombre: string): void
+  + getNombre(): string
+}
+
+class Mensaje {
+  - contenido: string
+  - autor: string
+  + Mensaje()
+  + Mensaje(contenido: string, autor: string)
+  + getContenido(): string
+  + getAutor(): string
+  + mostrarMensaje(): void
+  + mostrarMensaje(mostrarAutor: bool): void
+}
+
+abstract class ModeloIA {
+  # nombreModelo: string
+  + ModeloIA(nombreModelo: string)
+  + generarRespuesta(prompt: string): string
+  + getNombreModelo(): string
+}
+
+class OllamaModelo {
+  - urlApi: string
+  + OllamaModelo(nombreModelo: string, urlApi: string)
+  + generarRespuesta(prompt: string): string
+  + getUrlApi(): string
+}
+
+class Chatbot {
+  - modelo: ModeloIA*
+  - historial: vector<Mensaje>
+  + Chatbot(modelo: ModeloIA*)
+  + enviarMensaje(mensajeUsuario: string): string
+  + agregarMensaje(mensaje: Mensaje): void
+  + mostrarHistorial(): void
+}
+
+class Validador {
+  + validarTexto(texto: string): bool
+  + esComandoSalir(texto: string): bool
+}
+
+ModeloIA <|-- OllamaModelo
+Chatbot --> ModeloIA
+Chatbot --> Mensaje
+Usuario --> Mensaje
+Chatbot --> Validador
+
+@enduml
